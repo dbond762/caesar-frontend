@@ -1,10 +1,12 @@
 <template>
   <div class="app-crypter">
     <textarea v-model="input" class="io-area" cols="30" rows="10"></textarea>
-    <ShiftInput @change="sh => { shift = sh }"/>
-    <input type="button" value="<-" @click="send(false)">
-    <input type="button" value="->" @click="send(true)">
-    <textarea v-model="output" class="io-area" cols="30" rows="10" readonly></textarea>
+    <div class="controls">
+      <ShiftInput @change="sh => { shift = sh }"/>
+      <input type="button" value="Зашифровать ->" @click="send(true)">
+      <input type="button" value="<- Расшифровать" @click="send(false)">
+    </div>
+    <textarea v-model="output" class="io-area output" cols="30" rows="10" readonly></textarea>
   </div>
 </template>
 
@@ -20,7 +22,7 @@ export default {
   },
   data: function() {
     return {
-      input: '',
+      input: 'If the radiance of a thousand suns were to burst at once into the sky, that would be like the splendor of the mighty one. Now I am become Death, the destroyer of worlds.',
       output: '',
       shift: 3
     }
@@ -34,6 +36,7 @@ export default {
       })
       .then(resp => {
         this.output = resp.data.text
+        console.log(resp.data.freqs)
       })
       .catch(e => {
         console.log(e)
@@ -47,7 +50,22 @@ export default {
 .app-crypter {
   display: flex;
 }
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  width: 180px;
+}
 .io-area {
+  width: 100%;
   resize: none;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  background: #eee;
+  margin: 0 20px;
+}
+.output {
+  cursor: not-allowed;
 }
 </style>
