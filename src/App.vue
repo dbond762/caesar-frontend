@@ -1,19 +1,29 @@
 <template>
   <div id="app">
     <AppLegend/>
-    <AppCrypter/>
+    <AppCrypter @response="res => { resp = res }"/>
+    <AppChart :freqs="resp.freqs"/>
   </div>
 </template>
 
 <script>
 import AppLegend from './components/AppLegend.vue'
-import AppCrypter from "./components/AppCrypter.vue";
+import AppCrypter from './components/AppCrypter.vue'
+import AppChart from './components/AppChart'
 
 export default {
   name: 'app',
   components: {
     AppLegend,
-    AppCrypter
+    AppCrypter,
+    AppChart
+  },
+  data: function() {
+    return {
+      resp: {
+        freqs: []
+      }
+    }
   }
 }
 </script>

@@ -36,7 +36,7 @@ export default {
       })
       .then(resp => {
         this.output = resp.data.text
-        console.log(resp.data.freqs)
+        this.$emit('response', resp.data)
       })
       .catch(e => {
         console.log(e)
