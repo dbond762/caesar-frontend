@@ -3,8 +3,8 @@
     <textarea v-model="input" class="io-area" cols="30" rows="10"></textarea>
     <div class="controls">
       <ShiftInput @change="sh => { shift = sh }"/>
-      <input type="button" value="Зашифровать ->" @click="send(true)">
-      <input type="button" value="<- Расшифровать" @click="send(false)">
+      <input type="button" value="Зашифровать" @click="send(true)">
+      <input type="button" value="Расшифровать" @click="send(false)">
     </div>
     <textarea v-model="output" class="io-area output" cols="30" rows="10" readonly></textarea>
   </div>

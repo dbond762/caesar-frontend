@@ -3,25 +3,29 @@
     <AppLegend/>
     <AppCrypter @response="res => { resp = res }"/>
     <AppChart :freqs="resp.freqs"/>
+    <AppMessage :shift="resp.shift"/>
   </div>
 </template>
 
 <script>
 import AppLegend from './components/AppLegend.vue'
 import AppCrypter from './components/AppCrypter.vue'
-import AppChart from './components/AppChart'
+import AppChart from './components/AppChart.vue'
+import AppMessage from './components/AppMessage.vue'
 
 export default {
   name: 'app',
   components: {
     AppLegend,
     AppCrypter,
-    AppChart
+    AppChart,
+    AppMessage
   },
   data: function() {
     return {
       resp: {
-        freqs: []
+        freqs: [],
+        shift: 0
       }
     }
   }
