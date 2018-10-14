@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <AppLegend/>
-    <AppCrypter @response="res => { resp = res }"/>
+    <AppCrypter :shift="inputShift" @response="res => { resp = res }" @setShift="sh => { inputShift = sh }"/>
     <AppChart :freqs="resp.freqs"/>
-    <AppMessage :shift="resp.shift"/>
+    <AppMessage :resp="resp" @setShift="sh => { inputShift = sh }"/>
   </div>
 </template>
 
@@ -25,8 +25,10 @@ export default {
     return {
       resp: {
         freqs: [],
-        shift: 0
-      }
+        shift: 0,
+        isAnalized: false
+      },
+      inputShift: 3
     }
   }
 }
@@ -38,6 +40,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin: 60px;
+  margin: 40px;
+  font-size: 16px;
 }
 </style>
